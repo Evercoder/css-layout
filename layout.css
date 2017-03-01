@@ -1,0 +1,216 @@
+
+/*
+    PAGE SETUP
+    ----------
+/*
+    The app container takes the full height of the browser window.
+    (100vh = 100% of the viewport's height).
+    You can also use the `min-height` property instead
+    if you want to ensure the app is at least
+    as big as the browser window, but not constrain it beyond that.
+*/
+/*
+    FLEXBOX LAYOUT
+    --------------
+
+    We're using the BEM naming methodology (http://getbem.com/naming/).
+    Block:
+        .layout
+    Elements:
+        .layout__item
+    Modifiers:
+        .layout__item--fixed-size
+        .layout__item--grow,
+        et cetera
+*/
+
+/*
+    The basic building block is a layout container that will distribute
+    its child elements either horizontally or vertically.
+*/
+
+.layout {
+    display: flex;
+}
+
+/*
+    The children of a layout container may be laid either horizontally
+    or vertically, depending on the `flex-direction` property.
+    Here we create two modifiers for the .layout box
+*/
+
+.layout--hbox {
+    flex-direction: row;
+}
+
+.layout--vbox {
+    flex-direction: column;
+}
+
+/*
+    A layout that stretches all child elements to the same size.
+    This is useful for things like sidebars for which we might want
+    to have a background that stretches all the way down.
+    (Even if the sidebar only has a little content)
+*/
+
+.layout--stretch {
+    align-items: stretch;
+}
+
+/*
+    The alternative to stretching the child elements is to align
+    them in some way. In some situations, such as in headers that
+    contain logos and navigation menus, you may want to align all
+    children centrally.
+*/
+
+.layout--middle {
+    align-items: center;
+}
+
+/*
+    In situation where we need children to 'float' at opposite directions of the layout,
+    we can use the `justify-content` property to push them to the edges.
+*/
+
+.layout--spread {
+    justify-content: space-between;
+}
+
+.layout--wrap {
+    flex-wrap: wrap;
+}
+
+.layout--centered {
+    justify-content: space-around;
+}
+
+/*
+    This is the only element we need in a layout block.
+    By default, a `layout__item` does not need to do anything special.
+    It has `flex: 0 1 auto` which is a shorthand for:
+        - flex-grow: 0
+        - flex-shrink: 1
+        - flex-basis: auto
+    We do however set `overflow: hidden` on it, so that we can enable
+    scrolling on items that need it (see modifiers below).
+*/
+
+.layout__item {
+    flex: 0 1 auto;
+    overflow: hidden;
+}
+
+/*
+    This is a layout item that permits its children to overflow
+*/
+
+.layout__item--overflow {
+    overflow: visible;
+}
+
+/*
+    A layout item that grows to fill the available space.
+*/
+
+.layout__item--grow  {
+    flex-grow: 1;
+}
+
+/*
+    A layout item that shows a scrollbar in case its content overflows
+*/
+
+.layout__item--scroll {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+/*
+    A layout item that maintains a fixed size.
+    (Either width or height, depending on how the items are laid out)
+    This is accomplished by setting both `flex-grow` and `flex-shrink` to 0,
+    in effect disabling the flexibility on the item.
+*/
+
+.layout__item--fixed-size {
+    flex-grow: 0;
+    flex-shrink: 0;
+    box-sizing: border-box;
+}
+
+/*
+    For items with a fixed size, we control that size by setting the
+    `flex-basis` property rather than the `width` or `height` property.
+    Below, we define a couple of sizes that are used throughout the layout.
+*/
+
+.layout__item--width-medium {
+    flex-basis: 16em;
+}
+.layout__item--height-small {
+    flex-basis: 3.5em;
+    max-height: 3.5em;
+}
+
+.layout__item--width-10 {
+    flex-basis: 10%;
+}
+
+.layout__item--width-15 {
+    flex-basis: 15%;
+}
+
+.layout__item--width-20 {
+    flex-basis: 20%;
+}
+
+.layout__item--width-25 {
+    flex-basis: 25%;
+}
+
+.layout__item--width-30 {
+    flex-basis: 30%;
+}
+
+.layout__item--width-50 {
+    flex-basis: 50%;
+}
+
+.layout__item--width-60 {
+    flex-basis: 60%;
+}
+
+.layout__item--width-70 {
+    flex-basis: 70%;
+}
+
+.layout__item--width-75 {
+    flex-basis: 75%;
+}
+
+.layout__item--width-80 {
+    flex-basis: 80%;
+}
+
+.layout__item--width-85 {
+    flex-basis: 85%;
+}
+
+.layout__item--width-90 {
+    flex-basis: 90%;
+}
+/*
+    In general, you'd want to adjust how the app lays out when viewed
+    on small devices.
+    Below is a minimal example of turning all flex layouts to normal block layouts.
+*/
+/*@media (max-width: 40em) {
+    .layout {
+        display: block;
+    }
+
+    .layout__item {
+        max-height: auto !important;
+    }
+}*/
